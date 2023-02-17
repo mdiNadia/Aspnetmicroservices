@@ -1,5 +1,4 @@
 ﻿using Catalog.Api.Entities;
-using Catalog.API.Data;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 using System;

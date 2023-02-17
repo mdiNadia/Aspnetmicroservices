@@ -1,14 +1,13 @@
 ﻿using Catalog.Api.Data;
 using Catalog.Api.Entities;
 using Catalog.Api.Repositories;
-using Catalog.API.Data;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Catalog.API.Repositories
+namespace Catalog.APi.Repositories
 {
     public class ProductRepository : IProductRepository
     {
