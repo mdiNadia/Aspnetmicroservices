@@ -1,0 +1,97 @@
+docker pc
+docker pc -a
+ چک کردن اینکه داکر روی سیستم ران یا فعال هست یا نه و دیدن دیتابیس های ساخته شده روی داکر
+دستور اول کانتینرهای استاپ را نشان نمی دهد اما دومی همه چیز رو نشون میده
+docker start 1048 
+این دستور کانتینر با این آیدی را استارت میکند. تا 5 حرف اول آیدی کافیه بنویسیم
+docker stop 1048
+این دستور کانتینتر مورد نظر را استاپ میکند
+docker rm 1048
+این دستور کانتینر موردنظر را حذف میکند
+docker rmi 1048
+این دستور ایمیج کانتینر  مورد نظر را حذف میکند
+docker images
+
+
+docker --version
+docker pull mongo
+اضافه کردن ایمیج مونگو به داکر
+
+docker run -d -p 27017:27017 --name shopping-mongo mongo
+اضافه کردن کانتینر(فضایی شامل یک یا چند دیتابیس از جنس ایمیجش) برنامه از نوع مونگو به داکر
+
+docker log -f shopping-mongo
+دیدن اطلاعات پیش فرض و اولیه این کانتینر
+
+docker exec -it shopping-mongo /bin/bash
+وارد کانتینر مونگوی فعلی شدن
+وارد کانتینترانتخابی شدن برای اجرای دستورات از نوع ایمیجِ مربوط به اون کانتینر
+
+-it = interactive terminal
+-p = port
+-d =
+docker exec = into docker container
+
+connect interactive terminal with mongoDB connection and see how 
+to run mongo commands inside of the mongo container:
+
+docker exec -it shopping-mongo /bin/bash
+بعد از این دستور ما قادر خواهیم بود دستورات مونگو را در کانتینر اجرا کنیم.
+
+
+نکته:برای اجرای این دستورات در پاورشل مونگو حتما باید مونگوشل نصب شود
+https://www.mongodb.com/docs/mongodb-shell/install/#std-label-mdb-shell-install
+
+
+ls = list of collection in container
+mongosh = list of mongo commands we can use in powershell
+show dbs = نمایش تمام دیتابیس های موجود در کانتینر
+به صورت پیش فرض یک دیتابیس در کانتینر وجود داره که همونو نشون میده اگر بخوایم یک دیتابیس جدید از نوع مونگو با ایمیج مونگو در کانتینر فعلی بسازیم از دستور زیر استفاده میکنیم
+
+use db_name = use CatalogDb
+سپس برای کالکشن یا جدول ها از دستور زیر استفاده میکنیم
+db.createCollection('Products')
+سپس برای ایجاد پراپرتی ها در این جدول یا کالکشن از دستور زیر استفاده میکنیم
+db.Products.insertMany([{},{}])
+db.Products.insert({})
+db.Products.insertMany([
+{
+	'Name':'Asus Laptop',
+	'Category':'Computers',
+	'Summary':'summary',
+	'Description':'Description',
+	'ImageFile':'ImageFile',
+	'Price':54.93
+
+},
+{
+	'Name':'HP Laptop',
+	'Category':'Computers',
+	'Summary':'summary',
+	'Description':'Description',
+	'ImageFile':'ImageFile',
+	'Price':54.93
+}
+])
+
+دستور زیر تمام آبجکت ها و رکوردهای جدول محصولات را نشان میده
+db.Products.find({}).pretty()
+
+با دستور زیر تمام آبجکت یا رکوردهای درج شده را میشود پاک کرد
+db.Products.remove({})
+db.Products.deleteMany({});
+
+ 
+show databases  نمایش تمام دیتابیس ها
+show collections نمایش تمام جدول های داخل دیتابیس فعلی
+
+
+نکته: تمام دستورات مونگودی بی
+https://mongoosejs.com/docs/deprecations.html
+
+
+دستور ساختن دیتابیس و اجرا در داکر کامپوز
+docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up -d
+
+دستور حذف دیتابیس و کانتینر موجود
+docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml down

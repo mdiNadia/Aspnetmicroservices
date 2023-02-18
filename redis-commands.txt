@@ -1,0 +1,38 @@
+docker pull redis
+docker images
+
+
+docker run -d -p 6379:6379 --name shopping-db redis
+docker ps
+docker logs -f shopping-db
+
+open redis CLI commands:
+docker exec -it shopping-db /bin/bash
+redis-cli
+
+redis CLI commands:
+ping
+set key value
+get key
+set name nadia
+get name 
+
+
+key = username
+value = json objects such as basket items
+
+for connecting with redis:
+Install-Package Microsoft.Extensions.Caching.StackExchangeRedis
+Update-Package -ProjectName Basket.Api
+
+
+test in docker compose:
+docker ps
+doscker stop containerID
+docker ps == check if stop
+docker ps -a == show stoped and started containers
+docker rm containerID == remove container after stoped it
+docker ps -a == check again
+
+docker images
+docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up -d
