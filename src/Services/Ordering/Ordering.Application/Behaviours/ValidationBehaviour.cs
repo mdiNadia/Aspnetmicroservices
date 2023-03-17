@@ -9,7 +9,7 @@ using ValidationException = Ordering.Application.Exceptions.ValidationException;
 
 namespace Ordering.Application.Behaviours
 {
-    public class ValidationBehaviour<TRequest,TResponse> : IPipelineBehavior<TRequest,TResponse>
+    public class ValidationBehaviour<TRequest,TResponse> : IPipelineBehavior<TRequest,TResponse> where TRequest : MediatR.IRequest<TResponse>
     {
         private readonly IEnumerable<IValidator<TRequest>> _validators;
 
