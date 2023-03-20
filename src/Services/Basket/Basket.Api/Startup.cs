@@ -15,6 +15,7 @@ namespace Basket.Api
     //Install-Package MassTransit
     //Install-Package MassTransit.RabbitMQ
     //Install-Package MassTransit.AspNetCore
+    //Update-Package -ProjectName Basket.Api
     public class Startup
     {
         public Startup(IConfiguration configuration)
